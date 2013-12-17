@@ -61,14 +61,16 @@
 -(IBAction)navigateBack:(id)sender {
     [self.mobileView goBack];
     [self.tabletView goBack];
-}
 
+    [self updateAddressBar];
+}
 
 -(IBAction)navigateForward:(id)sender {
     [self.mobileView goForward];
     [self.tabletView goForward];
-}
 
+    [self updateAddressBar];
+}
 
 -(IBAction)navigateReload:(id)sender {
     [self.mobileView reload:nil];
@@ -108,6 +110,10 @@
     [mobileDimensionString appendString:@"x"];
     [mobileDimensionString appendString:[NSMutableString stringWithFormat: @"%ld", lroundf(mobileViewSize.height)]];
     [_mobileDimensions setStringValue:mobileDimensionString];
+}
+
+-(void) updateAddressBar {
+    [_addressUrl setStringValue: [_tabletView mainFrameURL]];
 }
 
 @end
